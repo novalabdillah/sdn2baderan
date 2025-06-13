@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sistem Naskah Dinas Elektronik (SINDE)</title>
-  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="icon" type="image/png" href="Lambang.png" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -195,17 +195,17 @@
   }
 
   function getInputValues() {
-    return [
-      '',
-      document.getElementById('noSurat').value,
-      document.getElementById('tglSurat').value,
-      document.getElementById('penandatangan').value,
-      document.getElementById('jabatan').value,
-      document.getElementById('perihal').value,
-      document.getElementById('unitKerja').value,
-      document.getElementById('linkPdf').value
-    ];
-  }
+  return [
+    '',
+    document.getElementById('noSurat').value.toString(), // hanya tanda petik di depan
+    document.getElementById('tglSurat').value.toString(),
+    document.getElementById('penandatangan').value.toString(),
+    document.getElementById('jabatan').value.toString(),
+    document.getElementById('perihal').value.toString(),
+    document.getElementById('unitKerja').value.toString(),
+    document.getElementById('linkPdf').value.toString()
+  ];
+}
 
   async function addData() {
     const data = getInputValues();
