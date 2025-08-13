@@ -1,263 +1,394 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Sistem Naskah Dinas Elektronik (SINDE)</title>
-  <link rel="icon" type="image/png" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <style>
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(to right, #cbe9ff, #f0f9ff);
-    color: #333;
-    text-align: center;
-    padding: 20px;
-  }
-  .header {
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .header h1 {
-    margin: 0;
-    color: #007BFF;
-    font-weight: bold;
-  }
-  .header p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #555;
-  }
-  .login-button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-  }
-  .container {
-    max-width: 500px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  td {
-    padding: 10px;
-    text-align: left;
-  }
-  .label {
-    font-weight: bold;
-    width: 35%;
-  }
-  .separator {
-    width: 5%;
-    text-align: center;
-    font-weight: bold;
-  }
-  .value {
-    width: 60%;
-  }
-  tr:nth-child(odd) { background-color: #ffffff; }
-  tr:nth-child(even) { background-color: #e0f0ff; }
-  .download-btn {
-    background: #007BFF;
-    color: white;
-    padding: 12px 18px;
-    border: none;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-    margin-top: 20px;
-  }
-  .download-btn:hover {
-    background: #0056b3;
-    transform: scale(1.05);
-  }
-  .not-found {
-    color: #dc3545;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  /* Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 300px;
-    border-radius: 10px;
-    text-align: left;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .login-box {
-  width: 350px;
-  padding: 30px 25px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  animation: fadeIn 0.3s ease;
-    }
-    .login-input {
-      width: 100%;
-      padding: 10px 12px;
-      margin: 8px 0 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: border-color 0.3s;
-    }
-    .login-input:focus {
-      border-color: #007BFF;
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
-    }    
-    .login-btn {
-      width: 100%;
-      background-color: #007BFF;
-      color: white;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }    
-    .login-btn:hover {
-      background-color: #0056b3;
-    }
-   
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-.login-input {
-  width: 100%;
-  padding: 10px 12px;
-  margin: 8px 0 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: border-color 0.3s;
-  box-sizing: border-box; /* ✅ Ini mencegah input overflow */
-}
-* {
-  box-sizing: border-box;
-}
-  </style>
+    <meta charset="UTF-8">
+    <title>Sistem Naskah Dinas Elektronik (SINDE)</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Pengaturan Dasar */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* WARNA ASLI: Gradient background dipertahankan */
+            background-image: linear-gradient(to right, #cbe9ff, #f0f9ff);
+            /* WARNA ASLI: Warna teks utama */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* --- Header --- */
+        .header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header img {
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            /* WARNA ASLI: Warna judul utama */
+            color: #007BFF;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 1rem;
+            /* WARNA ASLI: Warna sub-judul */
+            color: #555;
+        }
+
+        /* --- Tombol Login Admin --- */
+        .login-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            /* WARNA ASLI: Tombol login */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px; /* Sudut lebih modern */
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .login-button:hover {
+            /* WARNA ASLI: Efek hover tombol */
+            background-color: #0056b3;
+            transform: translateY(-2px); /* Efek mengangkat */
+        }
+
+        /* --- Form Pencarian yang Lebih Menarik --- */
+        .search-form {
+            display: flex;
+            max-width: 550px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Agar sudut tombol menyatu */
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-right: none;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            color: #333; /* Warna teks input */
+        }
+
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        
+        .search-btn {
+            /* WARNA ASLI: Tombol Cari */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+             /* WARNA ASLI: Efek hover tombol */
+            background-color: #0056b3;
+        }
+
+        /* --- Kontainer Hasil Pencarian --- */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            /* WARNA ASLI: Background kontainer putih */
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+            /* WARNA ASLI: Warna judul di dalam kontainer */
+            color: #007BFF;
+        }
+
+        /* Tampilan Detail Surat (Pengganti Tabel) */
+        .detail-item {
+            display: flex;
+            padding: 12px 5px; /* Sedikit padding horizontal */
+            border-bottom: 1px solid #f0f0f0; /* Garis pemisah yang sangat tipis */
+            font-size: 1rem;
+            align-items: flex-start;
+        }
+
+        /* WARNA ASLI: Menggunakan warna latar genap dari tabel lama sebagai aksen hover */
+        .detail-item:hover {
+             background-color: #e0f0ff40; /* Transparan agar tidak terlalu mencolok */
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            width: 35%;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            color: #555;
+            width: 65%;
+            word-break: break-word;
+        }
+
+        /* Tombol Unduh */
+        .download-btn {
+            /* WARNA ASLI: Tombol unduh */
+            background: #007BFF;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            text-decoration: none;
+            display: block; /* Tombol menjadi full-width */
+            text-align: center;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .download-btn:hover {
+            /* WARNA ASLI: Efek hover tombol unduh */
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Pesan Status (Error/Not Found) */
+        .status-message {
+            /* WARNA ASLI: Warna pesan error */
+            color: #dc3545;
+            font-weight: 500;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+        }
+        
+        /* --- Modal Login (Hanya perbaikan layout & animasi) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100; left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 30px;
+            border: none;
+            width: 90%; max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: left; position: relative;
+            animation: slideIn 0.4s ease-out;
+        }
+        .close {
+            position: absolute; top: 10px; right: 20px;
+            color: #aaa; font-size: 32px; font-weight: bold;
+            cursor: pointer; transition: color 0.3s;
+        }
+        .close:hover { color: #333; }
+        .login-box label { font-weight: 600; display: block; margin-bottom: 5px; }
+        .login-input {
+            width: 100%; padding: 12px;
+            margin-bottom: 15px; border: 1px solid #ccc;
+            border-radius: 8px; font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .login-input:focus {
+            border-color: #007BFF; outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+        }
+        .login-btn {
+            width: 100%; background-color: #007BFF;
+            color: white; padding: 14px;
+            font-size: 16px; font-weight: 600; border: none;
+            border-radius: 8px; cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-btn:hover { background-color: #0056b3; }
+        #loginError {
+            display: none; color: #dc3545;
+            font-size: 0.9rem; margin-top: 15px; text-align: center;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <button class="login-button" onclick="document.getElementById('loginModal').style.display='block'">Login Admin</button>
-    <img src="logo.png" alt="Logo Sekolah" style="height: 100px;">
-    <h1>SD NEGERI 2 BADERAN</h1>
-    <p>Jl. Argopuro No. 50 Tlogosari, Kecamatan Sumbermalang</p>
-  </div>
-  <!-- Input Pencarian Nomor Surat -->
-    <div style="max-width: 500px; margin: 20px auto;">
-      <input type="text" id="searchNoSurat" placeholder="Masukkan Nomor Surat" class="login-input">
-      <button onclick="cariSurat()" class="login-btn" style="margin-top: 0; padding: 8px 12px; font-size: 14px;">Cari Surat</button>
-    </div>
-  <div class="container" id="hasil" style="display: none;"></div>
-  <!-- Modal Login -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content login-box">
-        <span class="close" onclick="document.getElementById('loginModal').style.display='none'">&times;</span>
-        <h2 style="text-align: center; color: #007BFF; margin-bottom: 20px;">🔒 Login Admin</h2>        
-        <label for="username" style="font-weight: 600;">Username</label>
-        <input type="text" id="username" placeholder="Masukkan username" class="login-input">   
-        <label for="password" style="font-weight: 600;">Password</label>
-        <input type="password" id="password" placeholder="Masukkan password" class="login-input">
-        <button onclick="login()" class="login-btn">Masuk</button>   
-        <p id="loginError" class="not-found" style="display: none;">❌ Username atau password salah</p>
-      </div>
-    </div>
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const noSurat = params.get("no_surat");
-      if (noSurat) {
-  const hasil = document.getElementById("hasil");
-  hasil.style.display = "block"; // ✅ tampilkan container hasil
-  hasil.innerHTML = "<p>🔄 Memuat data...</p>";
-  fetch("https://docs.google.com/spreadsheets/d/1WIfttQBT7ZV2TwMyBS8L9tliEXFiW7cUkuf_ywh7GPE/gviz/tq?tqx=out:json")
-    .then(res => res.text())
-    .then(text => {
-      const json = JSON.parse(text.substring(47).slice(0, -2));
-      const rows = json.table.rows;
-      const data = rows.map(row => row.c.map(cell => cell ? cell.v : ""));
-      const found = data.find(row => row[1] === noSurat);
-      if (found) {
-        const html = `
-          <h2>Detail Surat</h2>
-          <table>
-            <tr><td class="label">No. Surat</td><td class="separator">:</td><td class="value">${found[1]}</td></tr>
-            <tr><td class="label">Tanggal</td><td class="separator">:</td><td class="value">${found[2]}</td></tr>
-            <tr><td class="label">Penandatangan</td><td class="separator">:</td><td class="value">${found[3]}</td></tr>
-            <tr><td class="label">Jabatan</td><td class="separator">:</td><td class="value">${found[4]}</td></tr>
-            <tr><td class="label">Perihal</td><td class="separator">:</td><td class="value">${found[5]}</td></tr>
-            <tr><td class="label">Unit Kerja</td><td class="separator">:</td><td class="value">${found[6]}</td></tr>
-          </table>
-          <a class="download-btn" href="${found[7]}" target="_blank">⬇️ Unduh Surat (PDF)</a>
-        `;
-        hasil.innerHTML = html;
-      } else {
-        hasil.innerHTML = '<p class="not-found">❌ No. Surat tidak terdaftar dalam sistem.</p>';
-      }
-    })
-    .catch(err => {
-      hasil.innerHTML = '<p class="not-found">⚠️ Gagal mengambil data. Pastikan spreadsheet dapat diakses publik.</p>';
-      console.error(err);
-    });
-  } else {
-        // Tidak menampilkan apa-apa di #hasil jika tidak ada pencarian
-        document.getElementById("hasil").innerHTML = "";
-      }
-      function login() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        if (username === "admin" && password === "sdn2BADERAN!") {
-          window.location.href = "datasurat.html";
-        } else {
-          document.getElementById("loginError").style.display = "block";
-        }
-      }
-      function cariSurat() {
-        const input = document.getElementById("searchNoSurat").value.trim();
-        if (input) {
-          window.location.href = `?no_surat=${encodeURIComponent(input)}`;
-        } else {
-          alert("Silakan masukkan nomor surat untuk mencari.");
-        }
-      }
-    </script>
+
+    <div class="header">
+        <button class="login-button" onclick="openModal()">Login Admin</button>
+        <img src="logo.png" alt="Logo Sekolah">
+        <h1>SD NEGERI 2 BADERAN</h1>
+        <p>Jl. Argopuro No. 50 Tlogosari, Kecamatan Sumbermalang</p>
+    </div>
+
+    <div class="search-form">
+        <input type="text" id="searchNoSurat" placeholder="Ketik nomor surat di sini..." class="search-input">
+        <button onclick="cariSurat()" class="search-btn">🔍 Cari</button>
+    </div>
+
+    <div class="container" id="hasil" style="display: none;"></div>
+
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content login-box">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="text-align: center; color: #007BFF; margin-bottom: 25px;">🔒 Login Admin</h2>
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Masukkan username" class="login-input">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Masukkan password" class="login-input">
+            <button onclick="login()" class="login-btn">Masuk</button>
+            <p id="loginError">❌ Username atau password salah</p>
+        </div>
+    </div>
+
+    <script>
+        // SCRIPT FUNGSIONALITAS TETAP SAMA, HANYA TEMPLATE HASIL YANG DISESUAIKAN
+        const params = new URLSearchParams(window.location.search);
+        const noSurat = params.get("no_surat");
+        const loginModal = document.getElementById('loginModal');
+
+        if (noSurat) {
+            const hasil = document.getElementById("hasil");
+            hasil.style.display = "block"; // tampilkan container hasil
+            hasil.innerHTML = "<p style='text-align:center;'>🔄 Memuat data...</p>";
+
+            fetch("https://docs.google.com/spreadsheets/d/1WIfttQBT7ZV2TwMyBS8L9tliEXFiW7cUkuf_ywh7GPE/gviz/tq?tqx=out:json")
+                .then(res => res.text())
+                .then(text => {
+                    const json = JSON.parse(text.substring(47).slice(0, -2));
+                    const rows = json.table.rows;
+                    const data = rows.map(row => row.c.map(cell => cell ? cell.v : ""));
+                    const found = data.find(row => row[1] === noSurat);
+
+                    if (found) {
+                        // --- TEMPLATE HTML BARU UNTUK HASIL PENCARIAN ---
+                        const html = `
+                            <h2>Detail Naskah Dinas</h2>
+                            <div class="detail-item">
+                                <div class="detail-label">No. Surat</div>
+                                <div class="detail-value">${found[1] || '-'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Tanggal</div>
+                                <div class="detail-value">${found[2] || '-'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Penandatangan</div>
+                                <div class="detail-value">${found[3] || '-'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Jabatan</div>
+                                <div class="detail-value">${found[4] || '-'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Perihal</div>
+                                <div class="detail-value">${found[5] || '-'}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Unit Kerja</div>
+                                <div class="detail-value">${found[6] || '-'}</div>
+                            </div>
+                            <a class="download-btn" href="${found[7]}" target="_blank">⬇️ Unduh Surat (PDF)</a>
+                        `;
+                        hasil.innerHTML = html;
+                    } else {
+                        hasil.innerHTML = '<div class="status-message">❌ No. Surat tidak terdaftar dalam sistem.</div>';
+                    }
+                })
+                .catch(err => {
+                    hasil.innerHTML = '<div class="status-message">⚠️ Gagal mengambil data. Pastikan spreadsheet dapat diakses publik.</div>';
+                    console.error(err);
+                });
+        } else {
+            document.getElementById("hasil").style.display = 'none';
+        }
+
+        function openModal() {
+            loginModal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            loginModal.style.display = 'none';
+        }
+
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username === "admin" && password === "sdn2BADERAN!") {
+                window.location.href = "datasurat.html";
+            } else {
+                document.getElementById("loginError").style.display = "block";
+            }
+        }
+
+        function cariSurat() {
+            const input = document.getElementById("searchNoSurat").value.trim();
+            if (input) {
+                window.location.href = `?no_surat=${encodeURIComponent(input)}`;
+            } else {
+                alert("Silakan masukkan nomor surat untuk mencari.");
+            }
+        }
+
+        // Fungsionalitas pencarian dengan menekan tombol Enter
+        document.getElementById('searchNoSurat').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                cariSurat();
+            }
+        });
+        
+        // Menutup modal jika klik di luar area modal
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
