@@ -2,231 +2,259 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>SINDE – Sistem Naskah Dinas Elektronik</title>
+    <title>Sistem Naskah Dinas Elektronik (SINDE)</title>
     <link rel="icon" type="image/png" href="logo.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset dan Pengaturan Dasar */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #cbe9ff, #f8fbff);
+            /* WARNA ASLI: Gradient background dipertahankan */
+            background-image: linear-gradient(to right, #cbe9ff, #f0f9ff);
+            /* WARNA ASLI: Warna teks utama */
             color: #333;
+            text-align: center;
             padding: 20px;
-            font-size: 14px; /* lebih kecil */
+            line-height: 1.6;
         }
 
-        /* Header */
+        /* --- Header --- */
         .header {
-            text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             position: relative;
         }
 
         .header img {
-            height: 80px; /* lebih kecil */
-            margin-bottom: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .header img:hover {
-            transform: scale(1.05);
+            height: 100px;
+            margin-bottom: 10px;
         }
 
         .header h1 {
-            font-size: 1.6rem;
-            font-weight: 600;
+            /* WARNA ASLI: Warna judul utama */
             color: #007BFF;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin: 0;
         }
 
         .header p {
-            font-size: 0.9rem;
-            color: #666;
+            font-size: 1rem;
+            /* WARNA ASLI: Warna sub-judul */
+            color: #555;
         }
 
-        /* Tombol login */
+        /* --- Tombol Login Admin --- */
         .login-button {
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 10px;
+            top: 10px;
+            /* WARNA ASLI: Tombol login */
             background-color: #007BFF;
-            color: #fff;
+            color: white;
             border: none;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 8px; /* Sudut lebih modern */
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s ease;
-        }
-        .login-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Search */
+        .login-button:hover {
+            /* WARNA ASLI: Efek hover tombol */
+            background-color: #0056b3;
+            transform: translateY(-2px); /* Efek mengangkat */
+        }
+
+        /* --- Form Pencarian yang Lebih Menarik --- */
         .search-form {
             display: flex;
-            max-width: 500px;
-            margin: 20px auto;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .search-input {
-            flex: 1;
-            border: none;
-            padding: 10px 14px;
-            font-size: 0.9rem;
-            outline: none;
-        }
-        .search-btn {
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 0 18px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background 0.3s;
-        }
-        .search-btn:hover {
-            background: #0056b3;
+            max-width: 550px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Agar sudut tombol menyatu */
         }
 
-        /* Container */
-        .container {
-            max-width: 550px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            font-size: 0.9rem;
+        .search-input {
+            flex-grow: 1;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-right: none;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+            color: #333; /* Warna teks input */
         }
+
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        
+        .search-btn {
+            /* WARNA ASLI: Tombol Cari */
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .search-btn:hover {
+             /* WARNA ASLI: Efek hover tombol */
+            background-color: #0056b3;
+        }
+
+        /* --- Kontainer Hasil Pencarian --- */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            /* WARNA ASLI: Background kontainer putih */
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
         .container h2 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #007BFF;
+            margin-bottom: 25px;
             font-weight: 600;
-            font-size: 1.2rem;
+            /* WARNA ASLI: Warna judul di dalam kontainer */
+            color: #007BFF;
         }
 
+        /* Tampilan Detail Surat (Pengganti Tabel) */
         .detail-item {
             display: flex;
-            padding: 8px 0;
-            border-bottom: 1px solid #f1f1f1;
+            padding: 12px 5px; /* Sedikit padding horizontal */
+            border-bottom: 1px solid #f0f0f0; /* Garis pemisah yang sangat tipis */
+            font-size: 1rem;
+            align-items: flex-start;
         }
+
+        /* WARNA ASLI: Menggunakan warna latar genap dari tabel lama sebagai aksen hover */
+        .detail-item:hover {
+             background-color: #e0f0ff40; /* Transparan agar tidak terlalu mencolok */
+        }
+        
         .detail-item:last-child {
             border-bottom: none;
         }
+
         .detail-label {
-            font-weight: 500;
+            font-weight: 600;
             color: #333;
             width: 35%;
+            flex-shrink: 0;
         }
+
         .detail-value {
-            width: 65%;
             color: #555;
-        }
-        .detail-item:hover {
-            background: rgba(0,123,255,0.05);
+            width: 65%;
+            word-break: break-word;
         }
 
-        /* Tombol unduh */
+        /* Tombol Unduh */
         .download-btn {
-            display: block;
+            /* WARNA ASLI: Tombol unduh */
             background: #007BFF;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            border-radius: 6px;
+            color: white;
+            padding: 14px 25px;
+            border: none;
             text-decoration: none;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        .download-btn:hover {
-            background: #0056b3;
-            transform: translateY(-1px);
-        }
-
-        /* Status message */
-        .status-message {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 12px;
-            color: #dc3545;
-            font-size: 0.9rem;
-            border-radius: 6px;
+            display: block; /* Tombol menjadi full-width */
             text-align: center;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
         }
 
-        /* Modal login */
+        .download-btn:hover {
+            /* WARNA ASLI: Efek hover tombol unduh */
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Pesan Status (Error/Not Found) */
+        .status-message {
+            /* WARNA ASLI: Warna pesan error */
+            color: #dc3545;
+            font-weight: 500;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+        }
+        
+        /* --- Modal Login (Hanya perbaikan layout & animasi) --- */
         .modal {
             display: none;
             position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
+            z-index: 100; left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.4s;
         }
         .modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 350px;
-            width: 90%;
-            position: relative;
-            animation: slideIn 0.3s ease;
+            background-color: #fefefe;
+            padding: 30px;
+            border: none;
+            width: 90%; max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: left; position: relative;
+            animation: slideIn 0.4s ease-out;
         }
         .close {
-            position: absolute;
-            right: 12px;
-            top: 6px;
-            font-size: 1.5rem;
-            color: #888;
-            cursor: pointer;
+            position: absolute; top: 10px; right: 20px;
+            color: #aaa; font-size: 32px; font-weight: bold;
+            cursor: pointer; transition: color 0.3s;
         }
-        .close:hover {
-            color: #333;
-        }
+        .close:hover { color: #333; }
+        .login-box label { font-weight: 600; display: block; margin-bottom: 5px; }
         .login-input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
+            width: 100%; padding: 12px;
+            margin-bottom: 15px; border: 1px solid #ccc;
+            border-radius: 8px; font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .login-input:focus {
+            border-color: #007BFF; outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
         }
         .login-btn {
-            background: #007BFF;
-            color: #fff;
-            border: none;
-            width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
+            width: 100%; background-color: #007BFF;
+            color: white; padding: 14px;
+            font-size: 16px; font-weight: 600; border: none;
+            border-radius: 8px; cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .login-btn:hover {
-            background: #0056b3;
-        }
+        .login-btn:hover { background-color: #0056b3; }
         #loginError {
-            display: none;
-            color: #dc3545;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            text-align: center;
+            display: none; color: #dc3545;
+            font-size: 0.9rem; margin-top: 15px; text-align: center;
         }
-
-        @keyframes fadeIn { from {opacity:0} to {opacity:1} }
-        @keyframes slideIn { from {transform:translateY(-10px); opacity:0} to {transform:translateY(0); opacity:1} }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -364,4 +392,3 @@
     </script>
 </body>
 </html>
-
